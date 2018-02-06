@@ -1,15 +1,58 @@
 public class BowlingGame {
-    int last_roll = 0;
-    int frame[][] = new int[10][2];
-    int extra_roll = 0;
 
-   
+    private int last_roll = 0;
+    private int frame[][] = new int[10][2];
+//    private boolean strike[] = new boolean [10];
+//    private boolean spare[] = new boolean [10];
+    private int f, f_roll;
+    private int extra_roll = 0;
+    private boolean gameover = false;
+    private boolean bExtraRoll = false;
+
+    private void actualizeFrame(){
+        if (gameover == false) {
+            if (bExtraRoll == true){
+                extra_roll = last_roll; // <--- if extra roll
+                System.out.println("extra roll = " + extra_roll);
+                gameover = true;
+            }else{
+                frame[f][f_roll] = last_roll; // <---- here to actualize score table <---
+                System.out.println("frame[" + f + "][" + f_roll + "] = " + frame[f][f_roll]);
+                if (f == 9){                //last frame - beginning
+                    if (f_roll == 0){           // the first roll in the last frame
+                        f_roll = 1;
+                    }else{                     // the second roll in the last frame            
+                        if ((frame[f][0] == 10) || (frame[f][0] + frame[f][1] == 10)){ // l_f and the second strike
+                            bExtraRoll = true;
+                        }else{
+                            gameover = true;
+                        }
+                    }                       // last frame - end            
+                }else{                      // betw frame - beginning
+                    if (f_roll == 0){       // the first roll in frame
+                        if (frame[f][0] == 10){ // betw frame - strike
+                            f = f + 1;
+                        }else{             // the second roll in frame
+                            f_roll = 1;
+                        }
+                    }else{
+                        f = f + 1;
+                        f_roll = 0;
+                    }
+                }     //betw frame - end
+            }      // not an extra roll
+        }    // not game over
+    }
+    
     public void roll(int pins) {
         last_roll = pins;
+//        System.out.println("last roll = " + last_roll);
+        actualizeFrame();
     }
 
     public int calculateScore() {
         int temp_score = 0;
+        
         for (int f = 0; f < 8; f++){
             temp_score = temp_score + frame[f][0] + frame[f][1];
             if (frame[f][0] + frame[f][1] == 10){
@@ -33,4 +76,6 @@ public class BowlingGame {
         return temp_score;
     }
 
+    
 }
+
