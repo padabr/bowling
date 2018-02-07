@@ -2,8 +2,6 @@ public class BowlingGame {
 
     private int last_roll = 0;
     private int frame[][] = new int[10][2];
-//    private boolean strike[] = new boolean [10];
-//    private boolean spare[] = new boolean [10];
     private int f, f_roll;
     private int extra_roll = 0;
     private boolean gameover = false;
@@ -13,11 +11,9 @@ public class BowlingGame {
         if (gameover == false) {
             if (bExtraRoll == true){
                 extra_roll = last_roll; // <--- if extra roll
-                System.out.println("extra roll = " + extra_roll);
                 gameover = true;
             }else{
                 frame[f][f_roll] = last_roll; // <---- here to actualize score table <---
-                System.out.println("frame[" + f + "][" + f_roll + "] = " + frame[f][f_roll]);
                 if (f == 9){                //last frame - beginning
                     if (f_roll == 0){           // the first roll in the last frame
                         f_roll = 1;
@@ -27,7 +23,7 @@ public class BowlingGame {
                         }else{
                             gameover = true;
                         }
-                    }                       // last frame - end            
+                    }      
                 }else{                      // betw frame - beginning
                     if (f_roll == 0){       // the first roll in frame
                         if (frame[f][0] == 10){ // betw frame - strike
@@ -39,7 +35,7 @@ public class BowlingGame {
                         f = f + 1;
                         f_roll = 0;
                     }
-                }     //betw frame - end
+                }
             }      // not an extra roll
         }    // not game over
     }
