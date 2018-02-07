@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="BowlingGameTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-02-07T11:12:34" hostname="OLP-Komputer" time="0.0">
+  <properties/>
+  <testcase name="bowlingGameHasZeroScoreInitially" classname="BowlingGameTest" time="0.0"/>
+  <testcase name="bowlingPerfectGameIs300" classname="BowlingGameTest" time="0.0"/>
+  <testcase name="bowlingGivenGameIs155" classname="BowlingGameTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
